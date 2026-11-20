@@ -1,0 +1,21 @@
+# Kubernetes Topology: Kraft Pulp Kamyr Digester H-Factor Kappa Control, Fourdrinier We
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "paper-kraft-digester-fourdrinier-web-tension-prod"
+  labels:
+    standard: "TAPPI-T236-ISO-536-PAPTAC-QCS-2026"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "kamyr-continuous-digest-worker"
+  namespace: "paper-kraft-digester-fourdrinier-web-tension-prod"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "kamyr-continuous-digest-worker"
+  template:
+    metadata:
+    
