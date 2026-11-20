@@ -76,4 +76,27 @@ INSERT INTO paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1 (
     station_code, captured_epoch_ms, operating_mode,
     vroom_h_factor_accum, blowline_kappa_number, estimator_residual,
     normalized_z_score, trip_breaker_engaged, audit_digest_sha256
+) VALUES (
+    'STN-ISOTHE-R1-001', 1763600100200, 'DYNAMIC_LOAD_STEP',
+    24.727403, 5.701135, 0.227403,
+    0.6497, FALSE, 'sha256:paper_kr_kamyr_co_r1_001'
+);
+INSERT INTO paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1 (
+    station_code, captured_epoch_ms, operating_mode,
+    vroom_h_factor_accum, blowline_kappa_number, estimator_residual,
+    normalized_z_score, trip_breaker_engaged, audit_digest_sha256
+) VALUES (
+    'STN-ISOTHE-R1-002', 1763600100400, 'HARMONIC_MITIGATION',
+    24.683933, 5.694769, 0.183933,
+    0.5255, FALSE, 'sha256:paper_kr_kamyr_co_r1_002'
+);
+INSERT INTO paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1 (
+    station_code, captured_epoch_ms, operating_mode,
+    vroom_h_factor_accum, blowline_kappa_number, estimator_residual,
+    normalized_z_score, trip_breaker_engaged, audit_digest_sha256
+) VALUES (
+    'STN-ISOTHE-R1-003', 1763600100600, 'REDUNDANT_VOTING',
+    24.57621, 5.685282, 0.07621,
+    0.2177, FALSE, 'sha256:paper_kr_kamyr_co_r1_003'
     
+);
