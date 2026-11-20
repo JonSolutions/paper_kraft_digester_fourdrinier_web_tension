@@ -33,4 +33,31 @@ spec:
             - name: "NOMINAL_TOLERANCE"
               value: "0.35"
             - name: "PRIMARY_METRIC_NAME"
-            
+              value: "vroom_h_factor_accum"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2000m"
+              memory: "2048Mi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "hydraulic-headbox-slice-worker"
+  namespace: "paper-kraft-digester-fourdrinier-web-tension-prod"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "hydraulic-headbox-slice-worker"
+  template:
+    metadata:
+      labels:
+        app: "hydraulic-headbox-slice-worker"
+        subsystem: "DilutionWaterProfiler"
+    spec:
+      containers:
+        - name: "hydraulic-headbox-slice-worker"
+        
