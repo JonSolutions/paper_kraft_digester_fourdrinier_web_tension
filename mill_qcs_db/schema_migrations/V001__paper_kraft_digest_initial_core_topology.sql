@@ -46,3 +46,11 @@ SELECT
     MAX(normalized_z_score) AS peak_z_score,
     SUM(CASE WHEN trip_breaker_engaged THEN 1 ELSE 0 END) AS breaker_trips
 FROM paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1
+GROUP BY station_code, operating_mode;
+
+CREATE OR REPLACE FUNCTION
+    paper_kraft_dige_domain.fn_guard_kamyr_continuous_digest_r1()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_rel_err DOUBLE PRECISION;
+BEGIN
