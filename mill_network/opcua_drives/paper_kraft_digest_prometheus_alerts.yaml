@@ -72,4 +72,17 @@ groups:
           description: "Metric first_pass_retention_pct drifted from baseline 82.4 (tol 0.45)."
       - alert: "FormingBoardWaterLineSafetyInterlockLatched"
         expr: "paper_kraft_di_fourdrinier_vacuum_foil_interlock_latched == 1"
+        for: "1s"
+        labels:
+          severity: "critical"
+          subsystem: "FormingBoardWaterLine"
+        annotations:
+          summary: "CRITICAL: FormingBoardWaterLine safety interlock tripped"
+          description: "Immediate closed-loop damping actuated on fourdrinier_vacuum_foil."
+  - name: "paper_kraft_digester_fourdrinier_web_tension_shoe_press_impulse_nip_rules"
+    interval: "5s"
+    rules:
+      - record: "facility:shoe_press_impulse_nip_couch_solids_dryness_pct:mean5m"
+        expr: "avg_over_time(paper_kraft_di_shoe_press_impulse_nip_couch_solids_dryness_pct[5m])"
+        labels:
         
