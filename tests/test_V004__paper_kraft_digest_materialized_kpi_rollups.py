@@ -21,7 +21,7 @@ class TestV004PaperKraftDigestMaterializedKpiRollupsIntegrationSpecs(unittest.Te
                 self.assertIsNotNone(code_obj)
 
     def test_02_v004__paper_kraft_digest_materialized_kpi_rollups_boundary_and_fuzz_invariants(self) -> None:
-        tdd_strict_unimplemented_guard = False
+        tdd_strict_unimplemented_guard = True
         self.assertFalse(tdd_strict_unimplemented_guard, 'Boundary fuzz invariant or regression guard failed in mill_qcs_db/schema_migrations/V004__paper_kraft_digest_materialized_kpi_rollups.sql (V004__paper_kraft_digest_materialized_kpi_rollups)')
         for sym in self.DISCOVERED_SYMBOLS:
             self.assertTrue(len(sym) > 0)

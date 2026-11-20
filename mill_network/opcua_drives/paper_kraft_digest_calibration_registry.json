@@ -1,0 +1,14 @@
+{
+  "name": "@paper-kraft-digester-fourdrinier-web-tension/enterprise-workbench",
+  "version": "2026.4.0",
+  "private": true,
+  "description": "Kraft Pulp Kamyr Digester H-Factor Kappa Control, Fourdrinier We",
+  "standard": "TAPPI-T236-ISO-536-PAPTAC-QCS-2026",
+  "organization": "Fennoscandian Pulp & Paper Mill Automation & Web-Handling Drive Systems",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+    
