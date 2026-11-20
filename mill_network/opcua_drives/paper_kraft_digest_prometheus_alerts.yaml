@@ -54,4 +54,22 @@ groups:
           summary: "CRITICAL: DilutionWaterProfiler safety interlock tripped"
           description: "Immediate closed-loop damping actuated on hydraulic_headbox_slice."
   - name: "paper_kraft_digester_fourdrinier_web_tension_fourdrinier_vacuum_foil_rules"
-  
+    interval: "5s"
+    rules:
+      - record: "facility:fourdrinier_vacuum_foil_first_pass_retention_pct:mean5m"
+        expr: "avg_over_time(paper_kraft_di_fourdrinier_vacuum_foil_first_pass_retention_pct[5m])"
+        labels:
+          subsystem: "FormingBoardWaterLine"
+          standard: "TAPPI-T236-ISO-536-PAPTAC-QCS-2026"
+      - alert: "FormingBoardWaterLineMahalanobisExcursionHigh"
+        expr: "paper_kraft_di_fourdrinier_vacuum_foil_mahalanobis_score > 3.5"
+        for: "15s"
+        labels:
+          severity: "warning"
+          subsystem: "FormingBoardWaterLine"
+        annotations:
+          summary: "FormingBoardWaterLine anomaly score exceeded 3.5 sigma"
+          description: "Metric first_pass_retention_pct drifted from baseline 82.4 (tol 0.45)."
+      - alert: "FormingBoardWaterLineSafetyInterlockLatched"
+        expr: "paper_kraft_di_fourdrinier_vacuum_foil_interlock_latched == 1"
+        
