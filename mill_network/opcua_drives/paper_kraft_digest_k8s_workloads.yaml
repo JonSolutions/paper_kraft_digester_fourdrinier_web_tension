@@ -18,4 +18,19 @@ spec:
       app: "kamyr-continuous-digest-worker"
   template:
     metadata:
-    
+      labels:
+        app: "kamyr-continuous-digest-worker"
+        subsystem: "IsothermalCookingZone"
+    spec:
+      containers:
+        - name: "kamyr-continuous-digest-worker"
+          image: "registry.local/paper_kraft_dige/kamyr-continuous-digest-worker:2026.4"
+          ports:
+            - containerPort: 8101
+          env:
+            - name: "NOMINAL_SETPOINT"
+              value: "24.5"
+            - name: "NOMINAL_TOLERANCE"
+              value: "0.35"
+            - name: "PRIMARY_METRIC_NAME"
+            
