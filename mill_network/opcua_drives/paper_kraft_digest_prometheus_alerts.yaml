@@ -99,3 +99,7 @@ groups:
       - alert: "ExtendedNipFeltPressSafetyInterlockLatched"
         expr: "paper_kraft_di_shoe_press_impulse_nip_interlock_latched == 1"
         
+        for: "1s"
+        labels:
+          severity: "critical"
+          
