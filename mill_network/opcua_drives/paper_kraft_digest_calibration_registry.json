@@ -78,7 +78,6 @@
         0.88,
         0.82,
         0.76
-        
       ],
       "redundant_voter_quorum": "2_OF_3_BYZANTINE"
     },
@@ -93,4 +92,15 @@
       "governing_law": "HeadboxJetToWireBernoulli",
       "governing_equation": "R_jw = sqrt(2 * g * H_total_headbox_head) / V_forming_wire",
       "law_coefficient": 1.02,
+      "kalman_process_noise_q": 0.018,
+      "kalman_measurement_noise_r": 0.459,
+      "mahalanobis_warning_sigma": 3.0,
+      "mahalanobis_scram_sigma": 6.0,
+      "harmonic_rejection_poles": [
+        0.94,
+        0.88,
+        0.82,
+        0.76
+      ],
+      "redundant_voter_quorum": "2_OF_3_BYZANTINE"
       
