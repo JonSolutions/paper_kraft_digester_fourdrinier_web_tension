@@ -11,4 +11,61 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
-    
+  },
+  "dependencies": {
+    "next": "14.2.15",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "typescript": "5.6.3",
+    "tailwindcss": "3.4.14"
+  },
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "strict": true,
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve"
+  },
+  "domainCalibrationRegistry": [
+    {
+      "subsystem_index": 1,
+      "subsystem_slug": "kamyr_continuous_digest",
+      "subsystem_class": "IsothermalCookingZone",
+      "primary_metric": "vroom_h_factor_accum",
+      "secondary_metric": "blowline_kappa_number",
+      "nominal_setpoint": 24.5,
+      "tolerance_band": 0.35,
+      "governing_law": "VroomHFactorDelignificationIntegral",
+      "governing_equation": "H_factor = int_0^t_cook exp(43.20 - 16115.0 / T_Kelvin(t)) dt_ho",
+      "law_coefficient": 1250.0,
+      "kalman_process_noise_q": 0.014,
+      "kalman_measurement_noise_r": 0.357,
+      "mahalanobis_warning_sigma": 3.0,
+      "mahalanobis_scram_sigma": 6.0,
+      "harmonic_rejection_poles": [
+        0.94,
+        0.88,
+        0.82,
+        0.76
+      ],
+      "redundant_voter_quorum": "2_OF_3_BYZANTINE"
+    },
+    {
+      "subsystem_index": 2,
+      "subsystem_slug": "hydraulic_headbox_slice",
+      "subsystem_class": "DilutionWaterProfiler",
+      "primary_metric": "jet_to_wire_ratio",
+      "secondary_metric": "cd_basis_weight_2sigma",
+      "nominal_setpoint": 1.02,
+      "tolerance_band": 0.004,
+      "governing_law": "BrandenburgMultiSpanWebTension",
+      "governing_equation": "d(T_i)/dt = (E_mod*A_web / L_i)*(V_i - V_{i-1}) + (V_{i-1}/L_i)*",
+      
