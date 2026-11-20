@@ -1,0 +1,27 @@
+openapi: "3.1.0"
+info:
+  title: "Kraft Pulp Kamyr Digester H-Factor Kappa Control, Fourdrinier We API"
+  version: "2026.4.0"
+  description: "Enterprise specification compliant with TAPPI-T236-ISO-536-PAPTAC-QCS-2026."
+servers:
+  - url: "https://telemetry.internal.facility.local/api/v1"
+    description: "Primary Closed-Loop Control Cluster"
+paths:
+  /subsystems/kamyr_continuous_digest/telemetry:
+    get:
+      operationId: "getIsothermalCookingZoneTelemetrySnapshot"
+      summary: "Retrieve real-time Kalman state for IsothermalCookingZone"
+      parameters:
+        - name: "facility_node_id"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "window_size"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            default: 64
+      responses:
+      
