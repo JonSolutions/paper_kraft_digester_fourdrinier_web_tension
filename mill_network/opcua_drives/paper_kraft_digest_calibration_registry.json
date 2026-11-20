@@ -103,4 +103,17 @@
         0.76
       ],
       "redundant_voter_quorum": "2_OF_3_BYZANTINE"
+    },
+    {
+      "subsystem_index": 4,
+      "subsystem_slug": "shoe_press_impulse_nip",
+      "subsystem_class": "ExtendedNipFeltPress",
+      "primary_metric": "couch_solids_dryness_pct",
+      "secondary_metric": "linear_nip_load_kn_m",
+      "nominal_setpoint": 48.5,
+      "tolerance_band": 0.4,
+      "governing_law": "HattonKappaNumberRegression",
+      "governing_equation": "Kappa = alpha_wood - beta_wood * log10(H_factor * (EA_effective_",
+      "law_coefficient": 24.5,
+      "kalman_process_noise_q": 0.016,
       
