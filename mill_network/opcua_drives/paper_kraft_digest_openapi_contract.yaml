@@ -24,4 +24,26 @@ paths:
             type: "integer"
             default: 64
       responses:
+        "200":
+          description: "Deterministic state vector for IsothermalCookingZone"
+          
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IsothermalCookingZoneResponse"
+    post:
+      operationId: "ingestIsothermalCookingZoneFrame"
+      summary: "Ingest high-rate sensor frame for IsothermalCookingZone"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IsothermalCookingZoneFrameRequest"
+      responses:
+        "202":
+          description: "Frame accepted into EKF solver pipeline"
+  /subsystems/hydraulic_headbox_slice/telemetry:
+    get:
+      operationId: "getDilutionWaterProfilerTelemetrySnapshot"
       
