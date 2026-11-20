@@ -23,4 +23,12 @@ CREATE TABLE IF NOT EXISTS paper_kraft_dige_domain.tbl_tomlinson_recovery_boil_r
     recorded_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT ck_tomlinson_recovery_boil_r5_ts CHECK (captured_epoch_ms > 0),
     CONSTRAINT ck_tomlinson_recovery_boil_r5_z CHECK (normalized_z_score >= 0.0)
+);
+
+CREATE INDEX IF NOT EXISTS ix_tomlinson_recovery_boil_r5_station_ts
+    ON paper_kraft_dige_domain.tbl_tomlinson_recovery_boil_r5
+    (station_code, captured_epoch_ms DESC);
+
+CREATE INDEX IF NOT EXISTS ix_tomlinson_recovery_boil_r5_breaker
+    ON paper_kraft_dige_domain.tbl_tomlinson_recovery_boil_r5
     
