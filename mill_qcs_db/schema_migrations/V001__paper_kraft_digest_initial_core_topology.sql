@@ -1,0 +1,26 @@
+-- [Fennoscandian Pulp & Paper Mill Automation & Web-Handling Drive Systems]
+-- Architecture Paradigm: COUPLED_WEB_TENSION_CASCADE
+-- Standard: TAPPI-T236-ISO-536-PAPTAC-QCS-2026 | Revision 01
+
+BEGIN TRANSACTION;
+
+CREATE SCHEMA IF NOT EXISTS paper_kraft_dige_domain;
+CREATE SCHEMA IF NOT EXISTS paper_kraft_dige_rollup;
+
+-- Entity 1: IsothermalCookingZone (COUPLED_WEB_TENSION_CASCADE)
+CREATE TABLE IF NOT EXISTS paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1 (
+    entry_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    station_code VARCHAR(56) NOT NULL,
+    captured_epoch_ms BIGINT NOT NULL,
+    operating_mode VARCHAR(40) NOT NULL DEFAULT 'STEADY_NOMINAL',
+    vroom_h_factor_accum DOUBLE PRECISION NOT NULL,
+    blowline_kappa_number DOUBLE PRECISION NOT NULL,
+    estimator_residual DOUBLE PRECISION NOT NULL DEFAULT 0.0,
+    normalized_z_score DOUBLE PRECISION NOT NULL DEFAULT 0.0,
+    trip_breaker_engaged BOOLEAN NOT NULL DEFAULT FALSE,
+    audit_digest_sha256 VARCHAR(96) NOT NULL,
+    attributes_json JSONB NOT NULL DEFAULT '{}'::jsonb,
+    recorded_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT ck_kamyr_continuous_digest_r1_ts CHECK (captured_epoch_ms > 0),
+    CONSTRAINT ck_kamyr_continuous_digest_r1_z CHECK (normalized_z_score >= 0.0)
+    
