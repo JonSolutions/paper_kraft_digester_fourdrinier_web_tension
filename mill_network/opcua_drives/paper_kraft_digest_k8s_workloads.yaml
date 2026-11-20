@@ -60,4 +60,37 @@ spec:
     spec:
       containers:
         - name: "hydraulic-headbox-slice-worker"
+          image: "registry.local/paper_kraft_dige/hydraulic-headbox-slice-worker:2026.4"
+          ports:
+            - containerPort: 8102
+          env:
+            - name: "NOMINAL_SETPOINT"
+              value: "1.02"
+            - name: "NOMINAL_TOLERANCE"
+              value: "0.004"
+            - name: "PRIMARY_METRIC_NAME"
+              value: "jet_to_wire_ratio"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2000m"
+              memory: "2048Mi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "fourdrinier-vacuum-foil-worker"
+  namespace: "paper-kraft-digester-fourdrinier-web-tension-prod"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "fourdrinier-vacuum-foil-worker"
+  template:
+    metadata:
+      labels:
+        app: "fourdrinier-vacuum-foil-worker"
+        subsystem: "FormingBoardWaterLine"
         
