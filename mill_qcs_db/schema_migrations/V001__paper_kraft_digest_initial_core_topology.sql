@@ -100,3 +100,18 @@ INSERT INTO paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1 (
     0.2177, FALSE, 'sha256:paper_kr_kamyr_co_r1_003'
     
 );
+INSERT INTO paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1 (
+    station_code, captured_epoch_ms, operating_mode,
+    vroom_h_factor_accum, blowline_kappa_number, estimator_residual,
+    normalized_z_score, trip_breaker_engaged, audit_digest_sha256
+) VALUES (
+    'STN-ISOTHE-R1-004', 1763600100800, 'BOUNDARY_GUARD',
+    24.441864, 5.674171, -0.058136,
+    0.1661, FALSE, 'sha256:paper_kr_kamyr_co_r1_004'
+);
+INSERT INTO paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1 (
+    station_code, captured_epoch_ms, operating_mode,
+    vroom_h_factor_accum, blowline_kappa_number, estimator_residual,
+    normalized_z_score, trip_breaker_engaged, audit_digest_sha256
+) VALUES (
+    
