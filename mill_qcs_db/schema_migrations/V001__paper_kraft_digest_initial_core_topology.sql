@@ -54,3 +54,21 @@ RETURNS TRIGGER AS $$
 DECLARE
     v_rel_err DOUBLE PRECISION;
 BEGIN
+    v_rel_err := ABS(NEW.vroom_h_factor_accum - (24.5)) / GREATEST(ABS(24.5), 1e-6);
+    IF v_rel_err > 63.000000 THEN
+        NEW.trip_breaker_engaged := TRUE;
+        NEW.operating_mode := 'PROTECTIVE_TRIP_ACTIVE';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS tg_kamyr_continuous_digest_r1
+    ON paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1;
+CREATE TRIGGER tg_kamyr_continuous_digest_r1
+    BEFORE INSERT OR UPDATE
+    ON paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1
+    FOR EACH ROW
+    EXECUTE FUNCTION
+        paper_kraft_dige_domain.fn_guard_kamyr_continuous_digest_r1();
+        
