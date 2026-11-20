@@ -23,4 +23,26 @@ CREATE TABLE IF NOT EXISTS paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r
     recorded_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT ck_kamyr_continuous_digest_r1_ts CHECK (captured_epoch_ms > 0),
     CONSTRAINT ck_kamyr_continuous_digest_r1_z CHECK (normalized_z_score >= 0.0)
-    
+);
+
+CREATE INDEX IF NOT EXISTS ix_kamyr_continuous_digest_r1_station_ts
+    ON paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1
+    (station_code, captured_epoch_ms DESC);
+
+CREATE INDEX IF NOT EXISTS ix_kamyr_continuous_digest_r1_breaker
+    ON paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1
+    (operating_mode, trip_breaker_engaged)
+    WHERE trip_breaker_engaged = TRUE;
+
+CREATE OR REPLACE VIEW
+    paper_kraft_dige_rollup.vw_kamyr_continuous_digest_r1_kpi AS
+SELECT
+    station_code,
+    operating_mode,
+    COUNT(*) AS total_frames,
+    AVG(vroom_h_factor_accum) AS avg_vroom_h_factor_accum,
+    STDDEV_POP(vroom_h_factor_accum) AS sd_vroom_h_factor_accum,
+    AVG(blowline_kappa_number) AS avg_blowline_kappa_number,
+    MAX(normalized_z_score) AS peak_z_score,
+    SUM(CASE WHEN trip_breaker_engaged THEN 1 ELSE 0 END) AS breaker_trips
+FROM paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1
