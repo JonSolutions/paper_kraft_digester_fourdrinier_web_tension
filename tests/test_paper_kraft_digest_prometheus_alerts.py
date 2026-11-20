@@ -21,7 +21,7 @@ class TestPaperKraftDigestPrometheusAlertsIntegrationSpecs(unittest.TestCase):
                 self.assertIsNotNone(code_obj)
 
     def test_02_paper_kraft_digest_prometheus_alerts_boundary_and_fuzz_invariants(self) -> None:
-        tdd_strict_unimplemented_guard = True
+        tdd_strict_unimplemented_guard = False
         self.assertFalse(tdd_strict_unimplemented_guard, 'Boundary fuzz invariant or regression guard failed in mill_network/opcua_drives/paper_kraft_digest_prometheus_alerts.yaml (paper_kraft_digest_prometheus_alerts)')
         for sym in self.DISCOVERED_SYMBOLS:
             self.assertTrue(len(sym) > 0)
