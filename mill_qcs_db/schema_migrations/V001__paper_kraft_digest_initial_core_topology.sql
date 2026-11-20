@@ -71,4 +71,9 @@ CREATE TRIGGER tg_kamyr_continuous_digest_r1
     FOR EACH ROW
     EXECUTE FUNCTION
         paper_kraft_dige_domain.fn_guard_kamyr_continuous_digest_r1();
-        
+
+INSERT INTO paper_kraft_dige_domain.tbl_kamyr_continuous_digest_r1 (
+    station_code, captured_epoch_ms, operating_mode,
+    vroom_h_factor_accum, blowline_kappa_number, estimator_residual,
+    normalized_z_score, trip_breaker_engaged, audit_digest_sha256
+    
