@@ -125,3 +125,13 @@ groups:
       - alert: "ViscoelasticWebSpanSafetyInterlockLatched"
         expr: "paper_kraft_di_sectional_draw_tension_interlock_latched == 1"
         for: "1s"
+        labels:
+          severity: "critical"
+          subsystem: "ViscoelasticWebSpan"
+        annotations:
+          summary: "CRITICAL: ViscoelasticWebSpan safety interlock tripped"
+          description: "Immediate closed-loop damping actuated on sectional_draw_tension."
+  - name: "paper_kraft_digester_fourdrinier_web_tension_yankee_hood_impingement_rules"
+    interval: "5s"
+    rules:
+      - record: "facility:yankee_hood_impingement_pocket_humidity_g_kg:mean5m"
