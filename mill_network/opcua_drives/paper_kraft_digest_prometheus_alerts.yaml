@@ -119,3 +119,7 @@ groups:
         labels:
           severity: "warning"
           subsystem: "ViscoelasticWebSpan"
+        annotations:
+          summary: "ViscoelasticWebSpan anomaly score exceeded 3.5 sigma"
+          description: "Metric web_tension_n_per_m drifted from baseline 340.0 (tol 4.2)."
+      - alert: "ViscoelasticWebSpanSafetyInterlockLatched"
