@@ -21,7 +21,7 @@ class TestPaperKraftDigestK8SWorkloadsIntegrationSpecs(unittest.TestCase):
                 self.assertIsNotNone(code_obj)
 
     def test_02_paper_kraft_digest_k8s_workloads_boundary_and_fuzz_invariants(self) -> None:
-        tdd_strict_unimplemented_guard = False
+        tdd_strict_unimplemented_guard = True
         self.assertFalse(tdd_strict_unimplemented_guard, 'Boundary fuzz invariant or regression guard failed in mill_network/opcua_drives/paper_kraft_digest_k8s_workloads.yaml (paper_kraft_digest_k8s_workloads)')
         for sym in self.DISCOVERED_SYMBOLS:
             self.assertTrue(len(sym) > 0)

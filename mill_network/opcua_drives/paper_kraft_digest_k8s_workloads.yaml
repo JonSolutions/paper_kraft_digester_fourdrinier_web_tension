@@ -106,3 +106,88 @@ spec:
               value: "0.45"
             - name: "PRIMARY_METRIC_NAME"
               value: "first_pass_retention_pct"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2000m"
+              memory: "2048Mi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "shoe-press-impulse-nip-worker"
+  namespace: "paper-kraft-digester-fourdrinier-web-tension-prod"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "shoe-press-impulse-nip-worker"
+  template:
+    metadata:
+      labels:
+        app: "shoe-press-impulse-nip-worker"
+        subsystem: "ExtendedNipFeltPress"
+    spec:
+      containers:
+        - name: "shoe-press-impulse-nip-worker"
+          image: "registry.local/paper_kraft_dige/shoe-press-impulse-nip-worker:2026.4"
+          ports:
+            - containerPort: 8104
+          env:
+            - name: "NOMINAL_SETPOINT"
+              value: "48.5"
+            - name: "NOMINAL_TOLERANCE"
+              value: "0.4"
+            - name: "PRIMARY_METRIC_NAME"
+              value: "couch_solids_dryness_pct"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2000m"
+              memory: "2048Mi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "sectional-draw-tension-worker"
+  namespace: "paper-kraft-digester-fourdrinier-web-tension-prod"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "sectional-draw-tension-worker"
+  template:
+    metadata:
+      labels:
+        app: "sectional-draw-tension-worker"
+        subsystem: "ViscoelasticWebSpan"
+    spec:
+      containers:
+        - name: "sectional-draw-tension-worker"
+          image: "registry.local/paper_kraft_dige/sectional-draw-tension-worker:2026.4"
+          ports:
+            - containerPort: 8105
+          env:
+            - name: "NOMINAL_SETPOINT"
+              value: "340.0"
+            - name: "NOMINAL_TOLERANCE"
+              value: "4.2"
+            - name: "PRIMARY_METRIC_NAME"
+              value: "web_tension_n_per_m"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2000m"
+              memory: "2048Mi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "yankee-hood-impingement-worker"
+  namespace: "paper-kraft-digester-fourdrinier-web-tension-prod"
