@@ -93,4 +93,16 @@ spec:
       labels:
         app: "fourdrinier-vacuum-foil-worker"
         subsystem: "FormingBoardWaterLine"
-        
+    spec:
+      containers:
+        - name: "fourdrinier-vacuum-foil-worker"
+          image: "registry.local/paper_kraft_dige/fourdrinier-vacuum-foil-worker:2026.4"
+          ports:
+            - containerPort: 8103
+          env:
+            - name: "NOMINAL_SETPOINT"
+              value: "82.4"
+            - name: "NOMINAL_TOLERANCE"
+              value: "0.45"
+            - name: "PRIMARY_METRIC_NAME"
+              value: "first_pass_retention_pct"
