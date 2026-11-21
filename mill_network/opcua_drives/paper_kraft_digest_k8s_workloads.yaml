@@ -196,3 +196,7 @@ spec:
   selector:
     matchLabels:
       app: "yankee-hood-impingement-worker"
+  template:
+    metadata:
+      labels:
+        app: "yankee-hood-impingement-worker"
