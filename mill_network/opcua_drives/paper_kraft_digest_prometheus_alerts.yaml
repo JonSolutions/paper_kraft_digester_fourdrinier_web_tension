@@ -98,8 +98,24 @@ groups:
           description: "Metric couch_solids_dryness_pct drifted from baseline 48.5 (tol 0.4)."
       - alert: "ExtendedNipFeltPressSafetyInterlockLatched"
         expr: "paper_kraft_di_shoe_press_impulse_nip_interlock_latched == 1"
-        
         for: "1s"
         labels:
           severity: "critical"
-          
+          subsystem: "ExtendedNipFeltPress"
+        annotations:
+          summary: "CRITICAL: ExtendedNipFeltPress safety interlock tripped"
+          description: "Immediate closed-loop damping actuated on shoe_press_impulse_nip."
+  - name: "paper_kraft_digester_fourdrinier_web_tension_sectional_draw_tension_rules"
+    interval: "5s"
+    rules:
+      - record: "facility:sectional_draw_tension_web_tension_n_per_m:mean5m"
+        expr: "avg_over_time(paper_kraft_di_sectional_draw_tension_web_tension_n_per_m[5m])"
+        labels:
+          subsystem: "ViscoelasticWebSpan"
+          standard: "TAPPI-T236-ISO-536-PAPTAC-QCS-2026"
+      - alert: "ViscoelasticWebSpanMahalanobisExcursionHigh"
+        expr: "paper_kraft_di_sectional_draw_tension_mahalanobis_score > 3.5"
+        for: "15s"
+        labels:
+          severity: "warning"
+          subsystem: "ViscoelasticWebSpan"
