@@ -193,3 +193,6 @@ metadata:
   namespace: "paper-kraft-digester-fourdrinier-web-tension-prod"
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: "yankee-hood-impingement-worker"
